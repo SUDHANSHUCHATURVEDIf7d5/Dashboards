@@ -1,50 +1,55 @@
-Sales Insights Data Analysis Project
-Instructions to setup mysql on your local computer
+## Sales Insights Data Analysis Project
 
-    Follow step in this video to install mysql on your local computer https://www.youtube.com/watch?v=WuBcTJnIuzo
+### Instructions to setup mysql on your local computer
 
-    Data has been used from codebasics.io. The SQL dump file can be downloaded from https://codebasics.io/resources/sales-insights-data-analysis-project
+1. Follow step in this video to install mysql on your local computer
+https://www.youtube.com/watch?v=WuBcTJnIuzo
 
-Data Analysis Using SQL
+1. Data has been used from codebasics.io. The SQL dump file can be downloaded from https://codebasics.io/resources/sales-insights-data-analysis-project
 
-    Show all customer records
+### Data Analysis Using SQL
 
-    SELECT * FROM customers;
+1. Show all customer records
 
-    Show total number of customers
+    `SELECT * FROM customers;`
 
-    SELECT count(*) FROM customers;
+1. Show total number of customers
 
-    Show transactions for Chennai market (market code for chennai is Mark001
+    `SELECT count(*) FROM customers;`
 
-    SELECT * FROM transactions where market_code='Mark001';
+1. Show transactions for Chennai market (market code for chennai is Mark001
 
-    Show distrinct product codes that were sold in chennai
+    `SELECT * FROM transactions where market_code='Mark001';`
 
-    SELECT distinct product_code FROM transactions where market_code='Mark001';
+1. Show distrinct product codes that were sold in chennai
 
-    Show transactions where currency is US dollars
+    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
 
-    SELECT * from transactions where currency="USD"
+1. Show transactions where currency is US dollars
 
-    Show transactions in 2020 join by date table
+    `SELECT * from transactions where currency="USD"`
 
-    SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;
+1. Show transactions in 2020 join by date table
 
-    Show total revenue in year 2020,
+    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
 
-    SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";
+1. Show total revenue in year 2020,
 
-    Show total revenue in year 2020, January Month,
+    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
+	
+1. Show total revenue in year 2020, January Month,
 
-    SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");
+    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
 
-    Show total revenue in year 2020 in Chennai
+1. Show total revenue in year 2020 in Chennai
 
-    SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.market_code="Mark001";
+    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
+and transactions.market_code="Mark001";`
+
 
 Data Analysis Using Power BI
+============================
 
-    Formula to create norm_amount column
+1. Formula to create norm_amount column
 
-= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] ="USD#(cr)" then [sales_amount]*80 else [sales_amount], type any)
+`= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] ="USD#(cr)" then [sales_amount]*80 else [sales_amount], type any)`
